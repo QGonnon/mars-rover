@@ -44,3 +44,19 @@ jobs:
           curl -X POST -H 'Content-type: application/json' --data '{
             "text": "☀️ Tous les tests ont réussi. Bon travail !"
           }' "${{ secrets.SLACK_WEBHOOK_URL }}"
+
+  analyze:
+  runs-on: ubuntu-latest
+  
+  steps:
+  - name: Checkout code
+    uses: actions/checkout@v2
+
+  - name: Install xmllint
+    run: sudo apt-get install -y libxml2-utils
+
+  - name: Make the script executable
+    run: chmod +x circular-dependencies.sh
+
+  - name: Check for Circular Dependencies
+    run: ./circular-dependencies.sh
