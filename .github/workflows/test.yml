@@ -7,8 +7,7 @@ jobs:
     steps:
       - name: Check commit message
         run: |
-            REQUIRED_EMOJI="🚀|👽|🪐"
-            if ! git log -1 --pretty=%B | grep -q "$REQUIRED_EMOJI"; then
+            if ! git log -1 --pretty=%B | grep -E '🚀|👽|🌍'; then
               echo "Erreur : Le dernier commit doit contenir l'emoji $REQUIRED_EMOJI."
               exit 1
             fi
