@@ -6,7 +6,7 @@ public class RoverTest
     public void TestCouldInitRover()
     {
         var rover = new Rover(3, 4, Direction.South);
-        Assert.Equivalent(rover.Coordinates, new Coordinates(3, 4, Direction.North));
+        Assert.Equivalent(rover.Coordinates, new Coordinates(3, 4, Direction.South));
     }
     
     [Fact]
