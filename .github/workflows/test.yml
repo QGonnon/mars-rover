@@ -46,17 +46,17 @@ jobs:
           }' "${{ secrets.SLACK_WEBHOOK_URL }}"
 
   analyze:
-  runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
   
-  steps:
-  - name: Checkout code
-    uses: actions/checkout@v2
-
-  - name: Install xmllint
-    run: sudo apt-get install -y libxml2-utils
-
-  - name: Make the script executable
-    run: chmod +x circular-dependencies.sh
-
-  - name: Check for Circular Dependencies
-    run: ./circular-dependencies.sh
+    - name: Install xmllint
+      run: sudo apt-get install -y libxml2-utils
+  
+    - name: Make the script executable
+      run: chmod +x circular-dependencies.sh
+  
+    - name: Check for Circular Dependencies
+      run: ./circular-dependencies.sh
