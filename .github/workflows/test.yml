@@ -3,12 +3,12 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
   Explore-GitHub-Actions:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Check commit message
         run: |
             if ! git log -1 --pretty=%B | grep -E '🚀|👽|🌍'; then
-              echo "Erreur : Le dernier commit doit contenir l'emoji $REQUIRED_EMOJI."
+              echo "Erreur : Le dernier commit doit contenir un emoji spatial."
               exit 1
             fi
       - name: Checkout
