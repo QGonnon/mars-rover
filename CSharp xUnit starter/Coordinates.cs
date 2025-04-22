@@ -7,6 +7,8 @@ public record Coordinates(int X, int Y, Direction Direction)
     public Coordinates XAntiTranslate() => this with { X = AntiTranslateAroundTheWorld(X) };
     public Coordinates XTranslate() => this with { X = TranslateAroundTheWorld(X) };
 
+    public Rover rover;
+
     public Coordinates Rotate() => this with
     {
         Direction = Direction switch
