@@ -5,6 +5,13 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: windows-latest
     steps:
+      - name: Check commit message
+        run: |
+            REQUIRED_EMOJI="🚀|👽|🪐"
+            if ! git log -1 --pretty=%B | grep -q "$REQUIRED_EMOJI"; then
+              echo "Erreur : Le dernier commit doit contenir l'emoji $REQUIRED_EMOJI."
+              exit 1
+            fi
       - name: Checkout
         uses: actions/checkout@v4
         
@@ -23,3 +30,17 @@ jobs:
         
       - name: Execute unit tests
         run: dotnet test
+        
+      - name: Notify Slack
+        if: failure()  # Notifier en cas d'échec des tests
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{
+            "text": "⚡️ Oh non ! Les tests ont échoué. Humain, ton code est incompréhensible pour ma civilisation. Peux-tu ajouter des tests ?"
+          }' "${{ secrets.SLACK_WEBHOOK_URL }}"
+
+      - name: Notify Slack Success
+        if: success()  # Notifier en cas de succès des tests
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{
+            "text": "☀️ Tous les tests ont réussi. Bon travail !"
+          }' "${{ secrets.SLACK_WEBHOOK_URL }}"
