@@ -7,8 +7,6 @@ public record Coordinates(int X, int Y, Direction Direction)
     public Coordinates XAntiTranslate() => this with { X = AntiTranslateAroundTheWorld(X) };
     public Coordinates XTranslate() => this with { X = TranslateAroundTheWorld(X) };
 
-    public Rover rover;
-
     public Coordinates Rotate() => this with
     {
         Direction = Direction switch
@@ -35,6 +33,7 @@ public record Coordinates(int X, int Y, Direction Direction)
 
     private int TranslateAroundTheWorld(int axis)
     {
+        Rover rover = new Rover(4, 3, Direction.North);
         if (axis == 0)
             return 20;
         if (axis == 20)
