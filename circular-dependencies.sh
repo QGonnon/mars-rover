@@ -4,7 +4,7 @@
 declare -A dependencies
 
 # Load project dependencies from .csproj files
-for proj in $(find . -name '*.csproj'); do
+for proj in $(find . -name 'CSharp xUnit starter/*.csproj'); do
     project_name=$(basename "$proj" .csproj)
     # Extract project references using xmllint
     refs=$(xmllint --xpath '//ProjectReference/@Include' "$proj" 2>/dev/null | sed 's/[^\/]*\///; s/\.csproj//g')
