@@ -33,7 +33,6 @@ public record Coordinates(int X, int Y, Direction Direction)
 
     private int TranslateAroundTheWorld(int axis)
     {
-        Rover rover = new Rover(4, 3, Direction.North);
         if (axis == 0)
             return 20;
         if (axis == 20)
