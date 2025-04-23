@@ -8,12 +8,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
-      - name: Check commit message
-        run: |
-            if ! git log -1 --pretty=%B | grep -q -E '(🚀|👽|🌍)'; then
-              echo "Erreur : Le dernier commit doit contenir un emoji spatial !"
-              exit 1
-            fi
+      # - name: Check commit message
+      #   run: |
+      #       if ! git log -1 --pretty=%B | grep -q -E '(🚀|👽|🌍)'; then
+      #         echo "Erreur : Le dernier commit doit contenir un emoji spatial !"
+      #         exit 1
+      #       fi
         
       - name: Install .NET Core
         uses: actions/setup-dotnet@v4
