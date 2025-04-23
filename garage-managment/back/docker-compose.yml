@@ -1,0 +1,13 @@
+services:
+
+    db:
+        image: postgres:17.4-alpine
+        command: postgres -c listen_addresses='*'
+        ports:
+        - 5432:5432
+#        volumes:
+#        - ~/apps/postgres:/var/lib/postgresql/data
+        environment:
+            POSTGRES_PASSWORD: password
+            POSTGRES_USER: user
+            POSTGRES_DB: mydatabase
